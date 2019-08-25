@@ -1,31 +1,43 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+﻿<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+    <div class="w-100">
+        <h1 class="mb-0">
+            Joe
+            <span class="text-primary" style="color:#3b5998">Pearson</span>
+        </h1>
+        <div class="subheading mb-5">
+            Learn more about me on the <a href="@Url.Action("About","Home")">about me</a> page or simply download my CV by clicking <a href="~/Content/Files/JoePearson2019.pdf" download style="color:#3b5998" id="cv"> here <i class="fa fa-file-pdf-o"></i></a>
+        </div>
+        <p class="lead mb-5">
+            I am a third year computer science student at the University of Lincoln - I achieved a high 2:1 in second year and
+            I am on target to obtain a first overall. I am keen and ambitious with programming (specifically web development, using C# ASP.NET MVC)
+            being my favourite area, if you couldn't tell... I also love cyber security. Due to this, I am hoping to be doing my dissertation
+            on blockchain technology in healthcare - looking into how to standardise it (especially with cross-border data transfer) with the use of Sovrin.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/joe-pearson-2142b445/" id="linkedinIcon">
+                <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/joepearson95/" id="githubIcon">
+                <i class="fa fa-github"></i>
+            </a>
+            <a href="https://twitter.com/Joe_Pearsonn95" id="twitterIcon">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="mailto:joe.c.pearson95@gmail.com?subject=LearningCSharp Contact" id="emailIcon">
+                <i class="fa fa-envelope"></i>
+            </a>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+
+<hr class="m-0">
+
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+    <div class="w-100">
+        <h2 class="mb-5">Interests</h2>
+        <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
+        <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.</p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</section>
+
+<hr class="m-0">

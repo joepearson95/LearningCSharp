@@ -10,7 +10,5 @@ namespace LearningCSharp.Data
     public class LearningCSharpDBContext : DbContext
     {
         public LearningCSharpDBContext() : base("DefaultConnection") { }
-
-        public DbSet<Movie> Movies { get; set; }
     }
 }

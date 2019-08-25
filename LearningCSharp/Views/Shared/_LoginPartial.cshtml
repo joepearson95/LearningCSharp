@@ -3,20 +3,33 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        @Html.AntiForgeryToken()
+        <li class="nav-item">
+            <a href="@Url.Action("Index", "Account", routeValues: null)" class="nav-link">
+                <i class="fa fa-user-circle-o"></i>
+                Account
+            </a>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <li class="nav-item">
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+                <i class="fa fa-sign-out"></i>
+                Log Off
+            </a>
+        </li>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <li class="nav-item">
+        <a href="@Url.Action("Register", "Account")" class="nav-link" id="registerLink">
+            <i class="fa fa-plus-circle"></i>
+            Register
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="@Url.Action("Login","Account")" class="nav-link" id="loginLink">
+            <i class="fa fa-sign-in"></i>
+            Login
+        </a>
+    </li>
 }
