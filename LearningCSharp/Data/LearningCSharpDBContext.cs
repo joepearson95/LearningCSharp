@@ -7,8 +7,11 @@ using System.Web;
 
 namespace LearningCSharp.Data
 {
+
     public class LearningCSharpDBContext : DbContext
     {
         public LearningCSharpDBContext() : base("DefaultConnection") { }
+        
+        public DbSet<Blog> Blogs { get; set; }
     }
 }
