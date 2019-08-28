@@ -1,64 +1,31 @@
 ﻿@model LearningCSharp.Models.Blog
 
-@{
-    ViewBag.Title = "Delete";
-}
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+    <div class="w-100">
+        <h2 class="mb-5">Confirm Deletion Of: '@Html.DisplayFor(model => model.PostTitle)'</h2>
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+            <div class="resume-content">
+                <p>
+                    <h3 class="mb-0">@Html.DisplayFor(model => model.PostTitle)</h3>
+                    <div class="subheading mb-3">@Html.DisplayFor(model => model.Author)</div>
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.PostBody)
+                </p>
+                <div class="subheading mb-3">
+                    @Html.DisplayFor(model => model.CreatedOn)
+                    @Html.DisplayFor(model => model.EditedOn)
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostTitle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostBody)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostBody)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EditedOn)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EditedOn)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        @Html.ActionLink("Cancel", "Index", null,null, new { @class = "btn btn-warning" })
+                    </div>
+                }
+            </div>
         </div>
-    }
-</div>
+    </div>
+</section>

@@ -1,57 +1,52 @@
 ﻿@model IEnumerable<LearningCSharp.Models.Blog>
+@using Microsoft.AspNet.Identity     
 
-@{
-    ViewBag.Title = "Index";
-}
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+    <div class="w-100">
+        <h2 class="mb-5">Blog </h2>
+        @*Short term fix. Need to add 'roles'*@
+        @if (@User.Identity.GetUserName() == "joe.c.pearson95@gmail.com")
+        {
+            <p>
+                @Html.ActionLink("Create New", "Create", null, null, new { @class = "btn btn-success"})
+            </p>
+        }
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+            @if (Model.Count() == 0)
+            {
+                <div class="resume-content">
+                    <p>
+                        <h3 class="mb-0">There are currently no blog posts to display! <i class="fa fa-frown-o"></i></h3>
+                    </p>
+                </div>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="resume-content">
+                        <p>
+                            <h3 class="mb-0">@Html.DisplayFor(modelItem => item.PostTitle)</h3>
+                            <div class="subheading mb-3">@Html.DisplayFor(modelItem => item.Author)</div>
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.PostBody)
+                        </p>
+                        <div class="subheading mb-3">
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                            @Html.DisplayFor(modelItem => item.EditedOn)
+                        </div>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PostTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostBody)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EditedOn)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostBody)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditedOn)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PostID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PostID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PostID })
-        </td>
-    </tr>
-}
-
-</table>
+                    @*Short term fix. Need to add 'roles'*@
+                    @if (@User.Identity.GetUserName() == "joe.c.pearson95@gmail.com")
+                    {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PostID }, new { @class = "btn btn-warning", @style = "margin-right: 5px;" })
+                            @Html.ActionLink("Details", "Details", new { id = item.PostID }, new { @class = "btn btn-primary", @style = "margin-right: 5px;" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PostID }, new { @class = "btn btn-danger", @style = "margin-right: 5px;" })
+                    }
+                    </div>
+                }   
+            }
+        </div>
+    </div>
+</section>
