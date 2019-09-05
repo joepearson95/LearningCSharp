@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LearningCSharp.Data;
 using LearningCSharp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LearningCSharp.Controllers
 {
@@ -49,13 +51,28 @@ namespace LearningCSharp.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PostID,PostTitle,PostBody,Author,CreatedOn,EditedOn")] Blog blog)
+        public ActionResult Create(Blog blog)
         {
             if (ModelState.IsValid)
             {
-                db.Blogs.Add(blog);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    blog = new Blog
+                    {
+                        PostTitle = blog.PostTitle,
+                        PostBody = blog.PostBody,
+                        Author = User.Identity.GetUserName(),
+                        CreatedOn = DateTime.Now,
+                        EditedOn = DateTime.Now 
+                    };
+                    db.Blogs.Add(blog);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                } catch (Exception error)
+                {
+                    System.Diagnostics.Debug.WriteLine(error);
+                    return RedirectToAction("Create");
+                }
             }
 
             return View(blog);
@@ -83,13 +100,37 @@ namespace LearningCSharp.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostID,PostTitle,PostBody,Author,CreatedOn,EditedOn")] Blog blog)
+        public ActionResult Edit(Blog blog)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(blog).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    blog = new Blog
+                    {
+                        PostID = blog.PostID,
+                        PostBody = blog.PostBody,
+                        PostTitle = blog.PostTitle,
+                        EditedOn = DateTime.Now
+                    };
+                    //db.Entry(blog).State = EntityState.Modified;
+                    //db.Blogs.Attach(blog);
+                    db.Entry(blog).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var errors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in errors.ValidationErrors)
+                        {
+                            // get the error message 
+                            string errorMessage = validationError.ErrorMessage;
+                            System.Diagnostics.Debug.WriteLine(errorMessage);
+                        }
+                    }
+                }
             }
             return View(blog);
         }

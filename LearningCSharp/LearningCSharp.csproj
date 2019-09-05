@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201908271340484_ApparentlyModelChanged.Designer.cs">
       <DependentUpon>201908271340484_ApparentlyModelChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909051819367_updatedatetime.cs" />
+    <Compile Include="Migrations\201909051819367_updatedatetime.Designer.cs">
+      <DependentUpon>201909051819367_updatedatetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -286,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908271340484_ApparentlyModelChanged.resx">
       <DependentUpon>201908271340484_ApparentlyModelChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909051819367_updatedatetime.resx">
+      <DependentUpon>201909051819367_updatedatetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

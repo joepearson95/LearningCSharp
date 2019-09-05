@@ -17,6 +17,7 @@
                     @Html.DisplayFor(model => model.EditedOn)
                 </div>
                 @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }, new { @class = "btn btn-warning", @style = "margin-right: 5px;" })
+                @Html.ActionLink("Go Back...", "Index", null, null, new { @class = "btn btn-primary"})
             </div>
         </div>
     </div>
