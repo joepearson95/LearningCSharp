@@ -113,9 +113,12 @@ namespace LearningCSharp.Controllers
                         PostTitle = blog.PostTitle,
                         EditedOn = DateTime.Now
                     };
-                    //db.Entry(blog).State = EntityState.Modified;
-                    //db.Blogs.Attach(blog);
-                    db.Entry(blog).State = EntityState.Modified;
+
+                    db.Blogs.Attach(blog);
+                    db.Entry(blog).Property(x => x.PostTitle).IsModified = true;
+                    db.Entry(blog).Property(x => x.PostBody).IsModified = true;
+                    db.Entry(blog).Property(x => x.EditedOn).IsModified = true;
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
